@@ -9,4 +9,6 @@ public interface ICustomerService {
     CustomerDto getCustomerByCustomerNumber(Long id);
 
     CustomerDto createCustomer(CustomerDto customerDto);
+
+    CustomerDto updatePartial(Integer customerNumber, CustomerDto customerDto);
 }

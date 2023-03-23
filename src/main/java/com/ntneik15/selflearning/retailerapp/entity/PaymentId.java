@@ -2,15 +2,22 @@ package com.ntneik15.selflearning.retailerapp.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.Hibernate;
 
 import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
+@AllArgsConstructor
+@Data
+@RequiredArgsConstructor
+@Builder
 public class PaymentId implements Serializable {
     private static final long serialVersionUID = 5947524740048525984L;
     @NotNull

@@ -4,6 +4,7 @@ import com.ntneik15.selflearning.retailerapp.dto.response.base.BaseResponse;
 import com.ntneik15.selflearning.retailerapp.dto.response.base.Meta;
 import com.ntneik15.selflearning.retailerapp.service.IOfficeService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @RequestMapping("/api/v1/offices")
 @Tag(name = "Office", description = "Office API")
+@SecurityRequirement(name = "bearer-key")
 public class OfficeController {
     public final IOfficeService officeService;
     @Operation(summary ="Get all offices")

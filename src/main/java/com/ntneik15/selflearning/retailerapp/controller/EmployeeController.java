@@ -4,6 +4,7 @@ import com.ntneik15.selflearning.retailerapp.dto.response.base.BaseResponse;
 import com.ntneik15.selflearning.retailerapp.dto.response.base.Meta;
 import com.ntneik15.selflearning.retailerapp.service.IEmployeeService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/employees")
 @AllArgsConstructor
 @Tag(name = "Employee", description = "Employee API")
+@SecurityRequirement(name = "bearer-key")
 public class EmployeeController {
     private final IEmployeeService employeeService;
     @Operation(summary ="Get all employees")

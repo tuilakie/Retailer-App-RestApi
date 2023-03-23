@@ -4,7 +4,6 @@ import com.ntneik15.selflearning.retailerapp.dto.orderdetail.OrderDetailDto;
 import com.ntneik15.selflearning.retailerapp.dto.response.base.Pagination;
 import com.ntneik15.selflearning.retailerapp.entity.Orderdetail;
 import com.ntneik15.selflearning.retailerapp.mapper.OrderDetailMapper;
-import com.ntneik15.selflearning.retailerapp.mapper.OrderMapper;
 import com.ntneik15.selflearning.retailerapp.repository.IOrderDetailRepository;
 import com.ntneik15.selflearning.retailerapp.service.IOrderDetailService;
 import lombok.AllArgsConstructor;

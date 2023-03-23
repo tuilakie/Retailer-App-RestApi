@@ -11,11 +11,14 @@ import com.ntneik15.selflearning.retailerapp.security.jwt.JwtProvider;
 import com.ntneik15.selflearning.retailerapp.service.IProductService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -86,7 +89,17 @@ public class ProductServiceImpl implements IProductService {
             throw new ConflictException("Product with product code: " + productCode + " not found");
         }
         ProductDto oldProductDto = ProductMapper.toDto(oldProduct);
-        ProductDto result = ProductDto.builder().ProductCode(productDto.getProductCode() != null ? productDto.getProductCode() : oldProductDto.getProductCode()).ProductName(productDto.getProductName() != null ? productDto.getProductName() : oldProductDto.getProductName()).ProductScale(productDto.getProductScale() != null ? productDto.getProductScale() : oldProductDto.getProductScale()).ProductVendor(productDto.getProductVendor() != null ? productDto.getProductVendor() : oldProductDto.getProductVendor()).ProductDescription(productDto.getProductDescription() != null ? productDto.getProductDescription() : oldProductDto.getProductDescription()).QuantityInStock(productDto.getQuantityInStock() != null ? productDto.getQuantityInStock() : oldProductDto.getQuantityInStock()).BuyPrice(productDto.getBuyPrice() != null ? productDto.getBuyPrice() : oldProductDto.getBuyPrice()).MSRP(productDto.getMSRP() != null ? productDto.getMSRP() : oldProductDto.getMSRP()).ProductLine(productDto.getProductLine() != null ? productDto.getProductLine() : oldProductDto.getProductLine()).build();
+        ProductDto result = ProductDto.builder().
+                ProductCode(productDto.getProductCode() != null ? productDto.getProductCode() :
+                        oldProductDto.getProductCode()).ProductName(productDto.getProductName() != null ? productDto.getProductName() :
+                        oldProductDto.getProductName()).ProductScale(productDto.getProductScale() != null ? productDto.getProductScale() :
+                        oldProductDto.getProductScale()).ProductVendor(productDto.getProductVendor() != null ? productDto.getProductVendor() :
+                        oldProductDto.getProductVendor()).ProductDescription(productDto.getProductDescription() != null ? productDto.getProductDescription() :
+                        oldProductDto.getProductDescription()).QuantityInStock(productDto.getQuantityInStock() != null ? productDto.getQuantityInStock() :
+                        oldProductDto.getQuantityInStock()).BuyPrice(productDto.getBuyPrice() != null ? productDto.getBuyPrice() :
+                        oldProductDto.getBuyPrice()).MSRP(productDto.getMSRP() != null ? productDto.getMSRP() :
+                        oldProductDto.getMSRP()).ProductLine(productDto.getProductLine() != null ? productDto.getProductLine() :
+                        oldProductDto.getProductLine()).build();
 
         log.info("new product: " + result);
         return ProductMapper.toDto(productRepository.save(ProductMapper.toEntity(result)));

@@ -1,5 +1,6 @@
 package com.ntneik15.selflearning.retailerapp.dto.employee;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -26,5 +27,9 @@ public class EmployeeDto {
     private Integer reportsTo;
     @NotNull(message = "JobTitle cannot be null")
     private String jobTitle;
+    @JsonIgnore
+    public void setEmployeeNumber(Integer employeeNumber) {
+        this.employeeNumber = employeeNumber;
+    }
 
 }

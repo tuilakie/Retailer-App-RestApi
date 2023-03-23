@@ -2,13 +2,13 @@ package com.ntneik15.selflearning.retailerapp.controller;
 
 import com.ntneik15.selflearning.retailerapp.dto.order.OrderCreationDto;
 import com.ntneik15.selflearning.retailerapp.dto.order.OrderDto;
-import com.ntneik15.selflearning.retailerapp.dto.orderdetail.OrderDetailDto;
 import com.ntneik15.selflearning.retailerapp.dto.response.base.BaseResponse;
 import com.ntneik15.selflearning.retailerapp.dto.response.base.Meta;
 import com.ntneik15.selflearning.retailerapp.dto.response.base.Pagination;
 import com.ntneik15.selflearning.retailerapp.dto.response.base.PaginationResponse;
 import com.ntneik15.selflearning.retailerapp.service.IOrderService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.data.util.Pair;
@@ -21,6 +21,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/api/v1/orders")
 @Tag(name = "Order", description = "Order API")
+@SecurityRequirement(name = "bearer-key")
 public class OrderController {
     public final IOrderService orderService;
 

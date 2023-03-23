@@ -2,11 +2,17 @@ package com.ntneik15.selflearning.retailerapp.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
+@AllArgsConstructor
+@RequiredArgsConstructor
+@Builder
 @Table(name = "payments", schema = "public")
 public class Payment {
     @EmbeddedId

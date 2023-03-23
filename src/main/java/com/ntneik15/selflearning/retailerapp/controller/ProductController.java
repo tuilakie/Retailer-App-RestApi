@@ -84,16 +84,6 @@ public class ProductController {
         return ResponseEntity.ok(new BaseResponse(new Meta(true, "Update product", HttpStatus.OK), productService.update(productDto, productCode)));
     }
 
-//    @PutMapping("")
-//    public ResponseEntity<BaseResponse> update( @RequestBody @Valid ProductDto productDto, BindingResult bindingResult) {
-//        if(bindingResult.hasErrors()) {
-//            bindingResult.getAllErrors().forEach(error -> {
-//                throw new BadRequestException(error.getDefaultMessage());
-//            });
-//        }
-//        return ResponseEntity.ok(new BaseResponse(new Meta(true, "Update product", HttpStatus.OK), productService.update(productDto)));
-//    }
-
     @PatchMapping("/{productCode}")
     @Operation(summary = "update product partially")
     public ResponseEntity<BaseResponse> updateProductByPartially(@PathVariable String productCode, @RequestBody ProductDto productDto) {

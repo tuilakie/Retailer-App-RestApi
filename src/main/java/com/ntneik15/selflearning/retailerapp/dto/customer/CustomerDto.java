@@ -1,5 +1,6 @@
 package com.ntneik15.selflearning.retailerapp.dto.customer;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,4 +32,8 @@ public class CustomerDto {
     private String country;
     private Integer salesRepEmployeeNumber;
     private Double creditLimit;
+    @JsonIgnore
+    public void setCustomerNumber(String customerNumber) {
+        this.customerNumber = customerNumber;
+    }
 }

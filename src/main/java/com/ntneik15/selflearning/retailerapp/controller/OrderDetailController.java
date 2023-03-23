@@ -7,6 +7,7 @@ import com.ntneik15.selflearning.retailerapp.dto.response.base.Pagination;
 import com.ntneik15.selflearning.retailerapp.dto.response.base.PaginationResponse;
 import com.ntneik15.selflearning.retailerapp.service.IOrderDetailService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.data.util.Pair;
@@ -21,6 +22,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @RequestMapping("api/v1/order-detail")
 @Tag(name = "Order Detail", description = "Order Detail API")
+@SecurityRequirement(name = "bearer-key")
 public class OrderDetailController {
     public final IOrderDetailService orderDetailService;
 
