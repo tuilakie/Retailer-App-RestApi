@@ -5,6 +5,9 @@ import com.ntneik15.selflearning.retailerapp.security.jwt.JwtEntryPoint;
 import com.ntneik15.selflearning.retailerapp.security.jwt.JwtProvider;
 import com.ntneik15.selflearning.retailerapp.security.jwt.JwtTokenFilter;
 import com.ntneik15.selflearning.retailerapp.security.userprinciple.UserPrincipleService;
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,10 +19,10 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AnonymousAuthenticationFilter;
+
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.web.servlet.handler.WebRequestHandlerInterceptorAdapter;
+
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
@@ -70,4 +73,11 @@ public class SecurityConfig {
         return http.build();
     }
 
+    @Bean
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI()
+                .components(new Components()
+                        .addSecuritySchemes("bearer-key",
+                                new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")));
+    }
 }

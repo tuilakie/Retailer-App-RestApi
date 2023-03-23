@@ -1,5 +1,6 @@
-package com.ntneik15.selflearning.retailerapp.dto;
+package com.ntneik15.selflearning.retailerapp.dto.product;
 
+import com.ntneik15.selflearning.retailerapp.dto.productline.ProductLineDto;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

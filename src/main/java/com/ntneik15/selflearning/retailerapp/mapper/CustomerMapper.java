@@ -1,6 +1,6 @@
 package com.ntneik15.selflearning.retailerapp.mapper;
 
-import com.ntneik15.selflearning.retailerapp.dto.CustomerDto;
+import com.ntneik15.selflearning.retailerapp.dto.customer.CustomerDto;
 import com.ntneik15.selflearning.retailerapp.entity.Customer;
 import com.ntneik15.selflearning.retailerapp.entity.Employee;
 import com.ntneik15.selflearning.retailerapp.exception.ConflictException;
@@ -30,7 +30,8 @@ public class CustomerMapper {
                 .state(customer.getState())
                 .postalCode(customer.getPostalcode())
                 .country(customer.getCountry())
-                .salesRepEmployeeNumber(customer.getSalesrepemployeenumber().getId().intValue())
+//                .salesRepEmployeeNumber(customer.getSalesrepemployeenumber().getEmployeenumber().intValue())
+                .salesRepEmployeeNumber(customer.getSalesrepemployeenumber() != null ? customer.getSalesrepemployeenumber().getEmployeenumber().intValue() : null)
                 .creditLimit(customer.getCreditlimit().doubleValue())
                 .build();
     }
@@ -41,7 +42,7 @@ public class CustomerMapper {
             throw new ConflictException("Employee not found with id: " + customerDto.getSalesRepEmployeeNumber());
 
         return Customer.builder()
-                .customernumber(Long.valueOf(customerDto.getCustomerNumber()))
+                .customernumber(customerDto.getCustomerNumber() != null ? Long.valueOf(customerDto.getCustomerNumber()): null)
                 .customername(customerDto.getCustomerName())
                 .contactlastname(customerDto.getContactLastName())
                 .contactfirstname(customerDto.getContactFirstName())
@@ -53,7 +54,7 @@ public class CustomerMapper {
                 .postalcode(customerDto.getPostalCode())
                 .country(customerDto.getCountry())
                 .salesrepemployeenumber(employee.get())
-                .creditlimit(BigDecimal.valueOf(customerDto.getCreditLimit()))
+                .creditlimit(customerDto.getCreditLimit() != null ?BigDecimal.valueOf(customerDto.getCreditLimit()): null)
                 .build();
     }
 }

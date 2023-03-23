@@ -1,6 +1,6 @@
 package com.ntneik15.selflearning.retailerapp.mapper;
 
-import com.ntneik15.selflearning.retailerapp.dto.request.auth.RoleDto;
+import com.ntneik15.selflearning.retailerapp.dto.auth.RoleDto;
 import com.ntneik15.selflearning.retailerapp.entity.Role;
 
 public class RoleMapper {

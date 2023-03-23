@@ -1,6 +1,6 @@
 package com.ntneik15.selflearning.retailerapp.mapper;
 
-import com.ntneik15.selflearning.retailerapp.dto.OfficeDto;
+import com.ntneik15.selflearning.retailerapp.dto.office.OfficeDto;
 import com.ntneik15.selflearning.retailerapp.entity.Office;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;

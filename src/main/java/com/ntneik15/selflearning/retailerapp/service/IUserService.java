@@ -1,6 +1,6 @@
 package com.ntneik15.selflearning.retailerapp.service;
 
-import com.ntneik15.selflearning.retailerapp.dto.response.auth.AuthResponse;
+import com.ntneik15.selflearning.retailerapp.dto.auth.AuthResponse;
 import com.ntneik15.selflearning.retailerapp.dto.response.base.BaseResponse;
 import com.ntneik15.selflearning.retailerapp.entity.User;
 

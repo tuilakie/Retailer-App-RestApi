@@ -21,7 +21,7 @@ import java.util.Set;
 public class Employee {
     @Id
     @Column(name = "employeenumber", nullable = false)
-    private Long id;
+    private Long employeenumber;
 
     @Size(max = 50)
     @NotNull
@@ -63,12 +63,12 @@ public class Employee {
     @OneToMany(mappedBy = "reportsto")
     private Set<Employee> employees = new LinkedHashSet<>();
 
-    public Long getId() {
-        return id;
+    public Long getEmployeenumber() {
+        return employeenumber;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setEmployeenumber(Long employeenumber) {
+        this.employeenumber = employeenumber;
     }
 
     public String getLastname() {

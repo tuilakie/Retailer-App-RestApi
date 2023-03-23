@@ -1,6 +1,6 @@
-package com.ntneik15.selflearning.retailerapp.dto.request.auth;
+package com.ntneik15.selflearning.retailerapp.dto.auth;
 
-import com.ntneik15.selflearning.retailerapp.entity.Role;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -22,6 +22,7 @@ public class UserDto {
     @NotNull(message = "Password cannot be null")
     @Size(min = 8, max = 20, message = "Password must be between 8 and 20 characters")
     private String password;
+    @JsonIgnore
     private Set<RoleDto> role = Set.of(new RoleDto("ROLE_USER"));
 
 }

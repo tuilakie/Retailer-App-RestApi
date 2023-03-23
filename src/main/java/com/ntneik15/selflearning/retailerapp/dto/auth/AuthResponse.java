@@ -1,4 +1,4 @@
-package com.ntneik15.selflearning.retailerapp.dto.response.auth;
+package com.ntneik15.selflearning.retailerapp.dto.auth;
 
 import com.ntneik15.selflearning.retailerapp.dto.response.base.BaseResponse;
 import com.ntneik15.selflearning.retailerapp.dto.response.base.Meta;

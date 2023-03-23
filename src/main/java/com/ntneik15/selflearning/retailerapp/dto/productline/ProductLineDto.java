@@ -1,4 +1,4 @@
-package com.ntneik15.selflearning.retailerapp.dto;
+package com.ntneik15.selflearning.retailerapp.dto.productline;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

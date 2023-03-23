@@ -1,6 +1,6 @@
 package com.ntneik15.selflearning.retailerapp.service.impl;
 
-import com.ntneik15.selflearning.retailerapp.dto.ProductLineDto;
+import com.ntneik15.selflearning.retailerapp.dto.productline.ProductLineDto;
 import com.ntneik15.selflearning.retailerapp.mapper.ProductLineMapper;
 import com.ntneik15.selflearning.retailerapp.repository.IProductlineRepository;
 import com.ntneik15.selflearning.retailerapp.service.IProductLineService;

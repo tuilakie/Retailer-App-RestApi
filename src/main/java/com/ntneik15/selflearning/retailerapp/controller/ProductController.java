@@ -1,14 +1,15 @@
 package com.ntneik15.selflearning.retailerapp.controller;
 
-import com.ntneik15.selflearning.retailerapp.dto.ProductDto;
+import com.ntneik15.selflearning.retailerapp.dto.product.ProductDto;
 import com.ntneik15.selflearning.retailerapp.dto.response.base.BaseResponse;
 import com.ntneik15.selflearning.retailerapp.dto.response.base.Meta;
 import com.ntneik15.selflearning.retailerapp.dto.response.base.Pagination;
 import com.ntneik15.selflearning.retailerapp.dto.response.base.PaginationResponse;
-import com.ntneik15.selflearning.retailerapp.entity.Product;
 import com.ntneik15.selflearning.retailerapp.exception.BadRequestException;
-import com.ntneik15.selflearning.retailerapp.exception.NoContentException;
 import com.ntneik15.selflearning.retailerapp.service.IProductService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,21 +18,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.service.annotation.PutExchange;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api/v1/products")
 @AllArgsConstructor
 @Slf4j
+@Tag(name = "Product", description = "Product API")
+@SecurityRequirement(name = "bearer-key")
 public class ProductController {
     private final IProductService productService;
 
     @GetMapping()
+    @Operation(summary = "Get all products")
     public ResponseEntity<BaseResponse> getAll(@RequestParam(required = false) Integer size,
                                                @RequestParam(required = false) Integer page,
                                                @RequestParam(required = false) String sort,
@@ -53,6 +54,7 @@ public class ProductController {
     }
 
     @GetMapping("/{productCode}")
+    @Operation(summary = "Get product by product code")
     public ResponseEntity<BaseResponse> findByProductCode(@PathVariable String productCode) {
         return Optional.ofNullable(productService.findByProductCode(productCode))
                 .map(product -> ResponseEntity.ok(new BaseResponse(new Meta(true, "Get product by product code: " + productCode, HttpStatus.OK), product)))
@@ -61,6 +63,7 @@ public class ProductController {
     }
 
     @PostMapping()
+    @Operation(summary = "create new product")
     public ResponseEntity<BaseResponse> save(@RequestBody @Valid ProductDto productDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(error -> {
@@ -71,6 +74,7 @@ public class ProductController {
     }
 
     @PutMapping("/{productCode}")
+    @Operation(summary = "update product")
     public ResponseEntity<BaseResponse> update(@PathVariable(required = false) String productCode, @RequestBody @Valid ProductDto productDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(error -> {
@@ -91,15 +95,16 @@ public class ProductController {
 //    }
 
     @PatchMapping("/{productCode}")
+    @Operation(summary = "update product partially")
     public ResponseEntity<BaseResponse> updateProductByPartially(@PathVariable String productCode, @RequestBody ProductDto productDto) {
         return ResponseEntity.ok(new BaseResponse(new Meta(true, "Patch product", HttpStatus.OK), productService.updateProductByPartially(productDto, productCode)));
     }
 
     @DeleteMapping("/{productCode}")
+    @Operation(summary = "delete product")
     public ResponseEntity<BaseResponse> delete(@PathVariable String productCode, @RequestHeader(value = "Authorization",required = false) String accessToken) {
         productService.delete(productCode, accessToken);
         return ResponseEntity.ok(new BaseResponse(new Meta(true, "Delete product with product code: " + productCode, HttpStatus.OK)));
     }
-
 
 }

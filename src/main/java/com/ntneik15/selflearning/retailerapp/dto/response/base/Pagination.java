@@ -27,28 +27,29 @@ public class Pagination {
         this.total_pages = total_pages;
         this.links = createLinksPagination();
     }
-    public Links createLinksPagination(){
-        boolean isLastPage = current_page == total_pages;
+
+    public Links createLinksPagination() {
+        boolean isLastPage = current_page == total_pages - 1;
         boolean isFirstPage = current_page == 1;
-        boolean isNextPage = current_page < total_pages && current_page >= 1;
-        boolean isPrevPage = current_page > 1 && current_page <= total_pages;
+        boolean isNextPage = current_page < total_pages - 1 && current_page >= 1;
+        boolean isPrevPage = current_page > 1 && current_page <= total_pages - 1;
 //        get current URI ignore query params
         String uri = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri().toString().split("\\?")[0];
         // ignore query params
         log.info("current uri: {}", uri);
-         Links links = Links.builder()
-                 .first(isFirstPage ? null : uri + "?page=1&size=" + per_page)
-                    .last(isLastPage ? null : uri + "?page=" + total_pages + "&size=" + per_page)
-                    .next(isNextPage ? uri + "?page=" + (current_page + 1) + "&size=" + per_page : null)
-                    .prev(isPrevPage ? uri + "?page=" + (current_page - 1) + "&size=" + per_page : null)
-                    .self(uri + "?page=" + current_page + "&size=" + per_page)
-                    .build();
-         return links;
+        Links links = Links.builder()
+                .first(isFirstPage ? null : uri + "?page=1&size=" + per_page)
+                .last(isLastPage ? null : uri + "?page=" + (total_pages - 1) + "&size=" + per_page)
+                .next(isNextPage ? uri + "?page=" + (current_page + 1) + "&size=" + per_page : null)
+                .prev(isPrevPage ? uri + "?page=" + (current_page - 1) + "&size=" + per_page : null)
+                .self(uri + "?page=" + current_page + "&size=" + per_page)
+                .build();
+        return links;
     }
 
-    public static Pagination createPaginationWithPageRequest(Page pageRequest, int page, int size){
+    public static Pagination createPaginationWithPageRequest(Page pageRequest, int page, int size) {
         return new Pagination(
-                (int)pageRequest.getTotalElements(),
+                (int) pageRequest.getTotalElements(),
                 pageRequest.getNumberOfElements(),
                 size, page,
                 pageRequest.getTotalPages());

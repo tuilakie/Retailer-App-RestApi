@@ -1,14 +1,10 @@
 package com.ntneik15.selflearning.retailerapp.service;
 
-import com.ntneik15.selflearning.retailerapp.dto.ProductDto;
+import com.ntneik15.selflearning.retailerapp.dto.product.ProductDto;
 import com.ntneik15.selflearning.retailerapp.dto.response.base.Pagination;
-import jakarta.transaction.Transactional;
-import org.hibernate.annotations.Persister;
 import org.springframework.data.util.Pair;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 public interface IProductService {
     List<ProductDto> getAll();

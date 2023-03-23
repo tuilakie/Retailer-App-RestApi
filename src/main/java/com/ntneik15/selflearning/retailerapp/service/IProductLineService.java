@@ -1,6 +1,6 @@
 package com.ntneik15.selflearning.retailerapp.service;
 
-import com.ntneik15.selflearning.retailerapp.dto.ProductLineDto;
+import com.ntneik15.selflearning.retailerapp.dto.productline.ProductLineDto;
 
 import java.util.List;
 

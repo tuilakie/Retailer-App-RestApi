@@ -1,9 +1,8 @@
 package com.ntneik15.selflearning.retailerapp.mapper;
 
-import com.ntneik15.selflearning.retailerapp.dto.ProductDto;
+import com.ntneik15.selflearning.retailerapp.dto.product.ProductDto;
 import com.ntneik15.selflearning.retailerapp.entity.Product;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;

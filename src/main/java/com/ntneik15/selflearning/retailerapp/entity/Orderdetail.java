@@ -2,10 +2,16 @@ package com.ntneik15.selflearning.retailerapp.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
 
 @Entity
+@Builder
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Table(name = "orderdetails", schema = "public", indexes = {
         @Index(name = "productcode", columnList = "productcode")
 })

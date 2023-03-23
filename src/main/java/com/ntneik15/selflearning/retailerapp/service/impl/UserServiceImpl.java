@@ -1,8 +1,8 @@
 package com.ntneik15.selflearning.retailerapp.service.impl;
 
-import com.ntneik15.selflearning.retailerapp.dto.request.auth.RoleDto;
-import com.ntneik15.selflearning.retailerapp.dto.request.auth.UserDto;
-import com.ntneik15.selflearning.retailerapp.dto.response.auth.AuthResponse;
+import com.ntneik15.selflearning.retailerapp.dto.auth.RoleDto;
+import com.ntneik15.selflearning.retailerapp.dto.auth.UserDto;
+import com.ntneik15.selflearning.retailerapp.dto.auth.AuthResponse;
 import com.ntneik15.selflearning.retailerapp.dto.response.base.BaseResponse;
 import com.ntneik15.selflearning.retailerapp.dto.response.base.Meta;
 import com.ntneik15.selflearning.retailerapp.entity.Role;

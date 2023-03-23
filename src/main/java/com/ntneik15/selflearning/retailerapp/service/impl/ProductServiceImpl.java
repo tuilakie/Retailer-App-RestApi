@@ -1,21 +1,16 @@
 package com.ntneik15.selflearning.retailerapp.service.impl;
 
-import com.ntneik15.selflearning.retailerapp.dto.ProductDto;
-import com.ntneik15.selflearning.retailerapp.dto.request.auth.RoleDto;
-import com.ntneik15.selflearning.retailerapp.dto.request.auth.UserDto;
+import com.ntneik15.selflearning.retailerapp.dto.product.ProductDto;
 import com.ntneik15.selflearning.retailerapp.dto.response.base.Pagination;
 import com.ntneik15.selflearning.retailerapp.entity.Product;
-import com.ntneik15.selflearning.retailerapp.entity.User;
 import com.ntneik15.selflearning.retailerapp.exception.ConflictException;
 import com.ntneik15.selflearning.retailerapp.exception.UnauthorizedException;
 import com.ntneik15.selflearning.retailerapp.mapper.ProductMapper;
-import com.ntneik15.selflearning.retailerapp.mapper.UserMapper;
 import com.ntneik15.selflearning.retailerapp.repository.IProductRepository;
 import com.ntneik15.selflearning.retailerapp.security.jwt.JwtProvider;
 import com.ntneik15.selflearning.retailerapp.service.IProductService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.websocket.AuthenticationException;
 import org.springframework.data.domain.*;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
@@ -37,11 +32,11 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public Pair<List<ProductDto>, Pagination> getAllWithPagination(int page, int size, String sort, String order) {
-        Page<Product> productPage = productRepository.findAll(PageRequest.of(page, size, sort == null ? Sort.unsorted() : (order.equals("asc") ? Sort.by(sort).ascending() : Sort.by(sort).descending())));
-
+        if(order == null) order = "asc";
+        Page<Product> productPage = productRepository.findAll(PageRequest.of(page, size, sort == null ? Sort.unsorted() : (order.equals("asc") ? Sort.by(sort).ascending() :
+                (order.equals("desc") ? Sort.by(sort).descending() : Sort.by(sort).ascending()))));
         return Pair.of(productPage.map(ProductMapper::toDto).getContent(), Pagination.createPaginationWithPageRequest(productPage, page, size));
     }
-
     @Override
     public ProductDto findByProductCode(String productCode) {
         return Optional.ofNullable(productRepository.findByProductcode(productCode)).map(ProductMapper::toDto).orElse(null);

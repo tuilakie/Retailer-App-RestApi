@@ -1,6 +1,6 @@
 package com.ntneik15.selflearning.retailerapp.mapper;
 
-import com.ntneik15.selflearning.retailerapp.dto.request.auth.UserDto;
+import com.ntneik15.selflearning.retailerapp.dto.auth.UserDto;
 import com.ntneik15.selflearning.retailerapp.entity.User;
 
 import java.util.stream.Collectors;

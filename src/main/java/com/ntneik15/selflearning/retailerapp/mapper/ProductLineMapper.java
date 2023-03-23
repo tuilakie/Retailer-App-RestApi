@@ -1,6 +1,6 @@
 package com.ntneik15.selflearning.retailerapp.mapper;
 
-import com.ntneik15.selflearning.retailerapp.dto.ProductLineDto;
+import com.ntneik15.selflearning.retailerapp.dto.productline.ProductLineDto;
 import com.ntneik15.selflearning.retailerapp.entity.Productline;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;

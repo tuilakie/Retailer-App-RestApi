@@ -1,4 +1,4 @@
-package com.ntneik15.selflearning.retailerapp.dto;
+package com.ntneik15.selflearning.retailerapp.dto.office;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

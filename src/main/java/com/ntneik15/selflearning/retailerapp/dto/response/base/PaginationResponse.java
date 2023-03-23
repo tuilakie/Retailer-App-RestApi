@@ -1,6 +1,7 @@
 package com.ntneik15.selflearning.retailerapp.dto.response.base;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -11,6 +12,5 @@ public class PaginationResponse extends BaseResponse{
         super(meta, data);
         this.pagination = pagination;
     }
-    private
-    Pagination pagination;
+    private Pagination pagination;
 }

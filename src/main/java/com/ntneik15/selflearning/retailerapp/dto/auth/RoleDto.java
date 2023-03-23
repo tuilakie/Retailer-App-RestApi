@@ -1,4 +1,4 @@
-package com.ntneik15.selflearning.retailerapp.dto.request.auth;
+package com.ntneik15.selflearning.retailerapp.dto.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

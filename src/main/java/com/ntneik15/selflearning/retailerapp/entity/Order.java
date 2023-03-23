@@ -1,42 +1,44 @@
 package com.ntneik15.selflearning.retailerapp.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
+@Builder
+@RequiredArgsConstructor
+@AllArgsConstructor
 @Table(name = "orders", schema = "public", indexes = {
         @Index(name = "customernumber", columnList = "customernumber")
 })
 public class Order {
     @Id
     @Column(name = "ordernumber", nullable = false)
-    private Long id;
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long ordernumber;
 
-    @NotNull
     @Column(name = "orderdate", nullable = false)
     private LocalDate orderdate;
 
-    @NotNull
     @Column(name = "requireddate", nullable = false)
     private LocalDate requireddate;
 
     @Column(name = "shippeddate")
     private LocalDate shippeddate;
 
-    @Size(max = 15)
-    @NotNull
+
     @Column(name = "status", nullable = false, length = 15)
     private String status;
 
     @Column(name = "comments", length = Integer.MAX_VALUE)
     private String comments;
 
-    @NotNull
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "customernumber", nullable = false)
     private Customer customernumber;
@@ -44,12 +46,12 @@ public class Order {
     @OneToMany(mappedBy = "ordernumber")
     private Set<Orderdetail> orderdetails = new LinkedHashSet<>();
 
-    public Long getId() {
-        return id;
+    public Long getOrdernumber() {
+        return ordernumber;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setOrdernumber(Long ordernumber) {
+        this.ordernumber = ordernumber;
     }
 
     public LocalDate getOrderdate() {

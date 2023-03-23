@@ -1,6 +1,6 @@
 package com.ntneik15.selflearning.retailerapp.mapper;
 
-import com.ntneik15.selflearning.retailerapp.dto.EmployeeDto;
+import com.ntneik15.selflearning.retailerapp.dto.employee.EmployeeDto;
 import com.ntneik15.selflearning.retailerapp.entity.Employee;
 import com.ntneik15.selflearning.retailerapp.entity.Office;
 import com.ntneik15.selflearning.retailerapp.exception.ConflictException;
@@ -19,13 +19,13 @@ public class EmployeeMapper {
 
     public static EmployeeDto toDto(Employee employee) {
         return EmployeeDto.builder()
-                .employeeNumber(employee.getId().intValue())
+                .employeeNumber(employee.getEmployeenumber() != null ? employee.getEmployeenumber().intValue() : null)
                 .lastName(employee.getLastname())
                 .firstName(employee.getFirstname())
                 .extension(employee.getExtension())
                 .email(employee.getEmail())
-                .officeCode(employee.getOfficecode().getOfficecode())
-                .reportsTo(employee.getReportsto().getId().intValue())
+                .officeCode(employee.getOfficecode() != null ? employee.getOfficecode().getOfficecode() : null)
+                .reportsTo(employee.getReportsto() != null ? employee.getReportsto() .getEmployeenumber().intValue() : null)
                 .jobTitle(employee.getJobtitle())
                 .build();
     }
@@ -38,7 +38,7 @@ public class EmployeeMapper {
             throw new ConflictException("Employee not found with id: " + employeeDto.getReportsTo());
 
         return Employee.builder()
-                .id(employeeDto.getEmployeeNumber().longValue())
+                .employeenumber(employeeDto.getEmployeeNumber() != null ? Long.valueOf(employeeDto.getEmployeeNumber()) : null)
                 .lastname(employeeDto.getLastName())
                 .firstname(employeeDto.getFirstName())
                 .extension(employeeDto.getExtension())
