@@ -7,7 +7,9 @@ import com.ntneik15.selflearning.retailerapp.entity.PaymentId;
 import com.ntneik15.selflearning.retailerapp.mapper.PaymentMapper;
 import com.ntneik15.selflearning.retailerapp.repository.IPaymentRepository;
 import com.ntneik15.selflearning.retailerapp.service.IPaymentService;
+import com.ntneik15.selflearning.retailerapp.ultils.CheckNumGenerator;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -18,6 +20,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class PaymentServiceImpl implements IPaymentService {
     public final IPaymentRepository paymentRepository;
     @Override
@@ -42,6 +45,13 @@ public class PaymentServiceImpl implements IPaymentService {
     @Override
     public List<PaymentDto> getPaymentsByCustomerNumber(String customerNumber) {
         return paymentRepository.findAllByCustomernumber(Integer.valueOf(customerNumber)).stream().map(PaymentMapper::toDto).toList();
+    }
+
+    @Override
+    public PaymentDto createPayment(PaymentDto paymentDto) {
+        paymentDto.setCheckNumber(CheckNumGenerator.generateCheckNumber());
+        log.info("Creating payment: " + paymentDto.getCheckNumber());
+        return PaymentMapper.toDto(paymentRepository.save(PaymentMapper.toEntity(paymentDto)));
     }
 
 }

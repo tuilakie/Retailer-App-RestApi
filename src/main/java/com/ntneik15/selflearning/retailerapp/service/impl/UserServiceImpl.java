@@ -55,7 +55,7 @@ public class UserServiceImpl implements IUserService {
             return Optional.empty();
         }
         UserDto userDto = new UserDto(username, password, Set.of(new RoleDto("ROLE_USER")));
-        return Optional.of((new BaseResponse(new Meta(true, "Login successfully!", HttpStatus.OK), userDto)));
+        return Optional.of((new BaseResponse(new Meta(true, "Register successfully!", HttpStatus.OK), null)));
 
     }
 

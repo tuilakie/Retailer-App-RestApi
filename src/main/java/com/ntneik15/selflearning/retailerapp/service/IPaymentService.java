@@ -12,4 +12,6 @@ public interface IPaymentService {
     PaymentDto getPayment(String customerNumber, String checkNumber);
 
     List<PaymentDto> getPaymentsByCustomerNumber(String customerNumber);
+
+PaymentDto createPayment(PaymentDto paymentDto);
 }
