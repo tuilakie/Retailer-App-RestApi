@@ -31,7 +31,8 @@ public class PaymentController {
             @RequestParam(required = false) Integer page,
             @RequestParam(required = false) String sort,
             @RequestParam(required = false) String order) {
-        Pair<List<PaymentDto>, Pagination> paginationResult = paymentService.getAllPaymentsWithPagination(page, size, sort, order);
+
+        Pair<List<PaymentDto>, Pagination> paginationResult = paymentService.getAllPaymentsWithPagination(page == null ? 0 : page, size == null ? 10 : size, sort, order);
         return ResponseEntity.ok(new PaginationResponse(
                 new Meta(true, "Get all payments successfully", HttpStatus.OK),
                 paginationResult.getFirst(), paginationResult.getSecond()));
